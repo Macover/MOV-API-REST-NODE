@@ -1,14 +1,14 @@
 //server.js
 
-const express = require('express')
-const movies = require('./movies.json')
-const { validateMovie, validatePartialMovie } = require('./schemas/movie')
-const crypto = require('node:crypto')
+import express, { json } from 'express'
+import movies from './movies.json' with {type: 'json'}
+import { validateMovie, validatePartialMovie } from './schemas/movie.js'
+import { randomUUID } from 'node:crypto'
 
 const app = express()
 
 app.disable('x-powered-by')
-app.use(express.json())
+app.use(json())
 
 const ACEPTED_ORIGINS = [
   'http://localhost:3000',
@@ -63,7 +63,7 @@ app.post('/movies', (req, res) => {
     //Emulating saving in a DB
     movies.push(newMovie)
     res.json({
-      id: crypto.randomUUID(),
+      id: randomUUID(),
       ...newMovie,
     })
   } else {
@@ -138,5 +138,5 @@ app.delete('/movies/:id', (req, res) => {
 const PORT = process.env.PORT ?? 3002
 
 app.listen(PORT, () => {
-  console.log(`Server running on port: ${PORT}`)
+  console.log(`Server running on port: http://localhost:${PORT}`)
 })

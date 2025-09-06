@@ -1,5 +1,5 @@
 //movie.js
-const z = require('zod')
+import z from 'zod'
 
 const movieSchema = z.object({
   title: z.string('Title shoudl be a string').max(40),
@@ -23,13 +23,11 @@ const movieSchema = z.object({
     .array(),
 })
 
-const validatePartialMovie = (object) => {
+export const validatePartialMovie = (object) => {
   return movieSchema.partial().safeParse(object)
 }
 
-const validateMovie = (movie) => {
+export const validateMovie = (movie) => {
   const data = movieSchema.safeParse(movie)
   return data
 }
-
-module.exports = { validateMovie, validatePartialMovie }
