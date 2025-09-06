@@ -1,0 +1,57 @@
+<!-- web/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <script type="module">
+        fetch('http://localhost:3002/movies')
+            .then(r => r.json())
+            .then(movie => {
+
+                document.querySelector('main').innerHTML = `
+                <ul>
+                    ${movie.map(m => `<li id=${m.id}>${m.title} (${m.year}) - ${m.genre} <button> Delete </button> </li>`).join('')}
+                </ul>`;
+
+                document.addEventListener('click', e => {
+                    if (e.target.matches('button')) {
+                        const li = e.target.closest('li')
+                        const movieId = li.getAttribute('id');
+                        console.log({ movieId })
+                        fetch(`http://localhost:3002/movies/${movieId}`,{
+                            method: 'DELETE'
+                        })
+                        .then(res => res.json()).then(result =>{
+                            console.log({result})
+                            if(result.success){
+                                console.log(`movieDeleted: ${movieId}` )
+                                li.remove();
+                            }
+                        })
+                    }
+
+
+                })
+
+
+
+
+
+            })
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Movies</h1>
+    </header>
+    <main>
+
+    </main>
+</body>
+
+</html>
