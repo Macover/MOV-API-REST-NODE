@@ -6,15 +6,19 @@ const ACEPTED_ORIGINS = [
   'http://my-movies.com',
 ]
 
-export const customCors = (req, res, next) => {
-  const origin = req.headers.origin
-  if (ACEPTED_ORIGINS.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin)
-    res.header(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, PATCH, DELETE, OPTIONS'
-    )
-    res.header('Access-Control-Allow-Headers', 'Content-Type')
+// const callback =
+
+export const customCors =
+  ({ acceptedOrigins = ACEPTED_ORIGINS } = {}) =>
+  (req, res, next) => {
+    const origin = req.headers.origin
+    if (acceptedOrigins.includes(origin)) {
+      res.header('Access-Control-Allow-Origin', origin)
+      res.header(
+        'Access-Control-Allow-Methods',
+        'GET, POST, PUT, PATCH, DELETE, OPTIONS'
+      )
+      res.header('Access-Control-Allow-Headers', 'Content-Type')
+    }
+    next()
   }
-  next()
-}

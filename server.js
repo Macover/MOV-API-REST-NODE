@@ -9,7 +9,14 @@ const app = express()
 app.disable('x-powered-by')
 app.use(json())
 
-app.use(customCors)
+// app.use(
+//   customCors([
+//     'http://127.0.0.1:3000', // Dev url
+//     'https://my-movies.com', //production url
+//   ])
+// )
+
+app.use(customCors())
 
 app.use('/movies', moviesRouter)
 
