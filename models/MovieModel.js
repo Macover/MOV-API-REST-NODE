@@ -1,6 +1,6 @@
 //Models/MovieModel.js
 import movies from '../movies.json' with {type: 'json'}
-import {randomUUID} from 'node:crypto'
+import { randomUUID } from 'node:crypto'
 
 export class MovieModel {
   static async getAll({ genre }) {
