@@ -28,7 +28,17 @@ CREATE TABLE movie_genders (
 INSERT INTO movies (title, director, release_year, genre, rating) VALUES
 ('Inception', 'Christopher Nolan', 2010, 'Science Fiction', 8.8),
 ('The Godfather', 'Francis Ford Coppola', 1972, 'Crime', 9.2),
-('Pulp Fiction', 'Quentin Tarantino', 1994, 'Crime', 8.9);
+('Pulp Fiction', 'Quentin Tarantino', 1994, 'Crime', 8.9),
+('The Dark Knight', 'Christopher Nolan', 2008, 'Action', 9.0),
+('Forrest Gump', 'Robert Zemeckis', 1994, 'Drama', 8.8),
+('The Matrix', 'The Wachowskis', 1999, 'Science Fiction', 8.7),
+('Titanic', 'James Cameron', 1997, 'Romance', 7.8),
+('The Shining', 'Stanley Kubrick', 1980, 'Horror', 8.4),
+('The Hangover', 'Todd Phillips', 2009, 'Comedy', 7.7),
+('Gladiator', 'Ridley Scott', 2000, 'Action', 8.5),
+('The Silence of the Lambs', 'Jonathan Demme', 1991, 'Horror', 8.6),
+('La La Land', 'Damien Chazelle', 2016, 'Romance', 8.0);
+
 
 INSERT INTO genders (name) VALUES
 ('Action'),

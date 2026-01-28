@@ -1,21 +1,22 @@
-import { MovieModel } from '../models/MovieModel.js'
+// import { MovieModel } from '../models/local/MovieModel.js' // local file
+import { MovieModel } from '../models/mysql/MovieModel.js' // mysql file
 import { validateMovie, validatePartialMovie } from '../schemas/movie.js'
 
 export class MovieController {
-  static async handleAllMoviesAsync(req, res) {
+  static async handleAllMoviesAsync (req, res) {
     const { genre } = req.query
     const movies = await MovieModel.getAll({ genre })
     return res.status(200).json(movies)
   }
 
-  static async handleMoviesByIdAsync(req, res) {
+  static async handleMoviesByIdAsync (req, res) {
     const { id } = req.params
     const movie = await MovieModel.getById({ id })
     if (movie) return res.status(200).json(movie)
     return res.status(404).json({ error: 404, message: 'Resource not found' })
   }
 
-  static async handleCreateMovieAsync(req, res) {
+  static async handleCreateMovieAsync (req, res) {
     const input = req.body
     const result = validateMovie(input)
     if (result.success) {
@@ -27,7 +28,7 @@ export class MovieController {
       .json({ error: 400, message: JSON.parse(result.error.message) })
   }
 
-  static async handleUpdateMovieAsync(req, res) {
+  static async handleUpdateMovieAsync (req, res) {
     const { id } = req.params
     const result = validatePartialMovie(req.body)
     if (result.error) {
@@ -45,7 +46,7 @@ export class MovieController {
     }
   }
 
-  static async handleDeleteMovieAsync(req, res) {
+  static async handleDeleteMovieAsync (req, res) {
     const { id } = req.params
 
     const isMovie = await MovieModel.remove({ id })
@@ -57,7 +58,7 @@ export class MovieController {
     return res.status(200).json({
       success: true,
       message: 'Movie deleted successfully',
-      movie: isMovie,
+      movie: isMovie
     })
   }
 }

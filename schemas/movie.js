@@ -1,13 +1,13 @@
-//movie.js
+// movie.js
 import z from 'zod'
 
 const movieSchema = z.object({
   title: z.string('Title shoudl be a string').max(40),
-  year: z.number().min(1900).max(2025),
+  release_year: z.number().min(1900).max(2025),
   director: z.string(),
-  duration: z.number().min(0),
-  poster: z.url().endsWith('.webp'),
-  rate: z.number().min(0).max(10).optional(),
+  // duration: z.number().min(0),
+  // poster: z.url().endsWith('.webp'),
+  rating: z.number().min(0).max(10).optional(),
   genre: z
     .enum([
       'Action',
@@ -18,9 +18,9 @@ const movieSchema = z.object({
       'Romance',
       'Animation',
       'Biography',
-      'Fantasy',
+      'Fantasy'
     ])
-    .array(),
+    .array()
 })
 
 export const validatePartialMovie = (object) => {
