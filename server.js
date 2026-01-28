@@ -1,7 +1,6 @@
-//server.js
-
 import express, { json } from 'express'
-import { moviesRouter } from './routes/movies.js'
+import { createRouter } from './routes/movies.js'
+import { MovieModel } from './models/mysql/MovieModel.js'
 import { customCors } from './middlewares/cors.js'
 
 const app = express()
@@ -18,7 +17,7 @@ app.use(json())
 
 app.use(customCors())
 
-app.use('/movies', moviesRouter)
+app.use('/movies', createRouter({ MovieModel }))
 
 const PORT = process.env.PORT ?? 3002
 
