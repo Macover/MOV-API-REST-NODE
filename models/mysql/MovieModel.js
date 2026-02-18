@@ -1,13 +1,19 @@
 // Models/MovieModel.js
 import mysql from 'mysql2/promise'
+import dotenv from 'dotenv'
+dotenv.config()
+
+const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = process.env
+
+console.log('variables', { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE })
 
 // Create the connection to database
 const connection = await mysql.createConnection({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: '',
-  database: 'movies_db'
+  host: DB_HOST,
+  port: DB_PORT,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_DATABASE
 })
 
 export class MovieModel {

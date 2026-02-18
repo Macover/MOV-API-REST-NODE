@@ -2,6 +2,8 @@ import express, { json } from 'express'
 import { createRouter } from './routes/movies.js'
 import { MovieModel } from './models/mysql/MovieModel.js'
 import { customCors } from './middlewares/cors.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
 
